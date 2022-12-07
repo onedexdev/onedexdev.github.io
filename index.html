@@ -20,12 +20,13 @@
 
     <script>
         function Download() {
+            var proxyurl = "https://cors-anywhere.herokuapp.com/";
             // / helper to transform to base64
             // see other question for more help
             function toDataUrl(url, callback) {
                 
                     
-                var proxyurl = "https://cors-anywhere.herokuapp.com/";
+                
                 fetch(proxyurl + url, { mode: 'no-cors' })
                 .then( response => response.blob() )
                 .then( blob =>{
