@@ -2,64 +2,83 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content=
-		"width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>
-		Allowing cross-origin use of images and canvas
-	</title>
+    <title>
+        Allowing cross-origin use of images and canvas
+    </title>
 </head>
 
 <body>
-	<div id="display"></div>
+    <div id="display"></div>
 
-	<button onclick="Download()">
-		DOWNLOAD
-	</button>
-	
-	<script>
-		function Download() {
+    <button onclick="Download()">
+        DOWNLOAD
+    </button>
 
-			// Hard coded image URL change the URL according
-			// to the image you want to download
-			let imgURL =
-"https://media.geeksforgeeks.org/wp-content/uploads/20220726175411/GFG.jpg";
+    <script>
+        function Download() {
+            // / helper to transform to base64
+            // see other question for more help
+            function toDataUrl(url, callback) {
+                var xhr = new XMLHttpRequest();
 
-			let foreignImg = new Image();
+                xhr.responseType = 'blob';
+                xhr.onload = function () {
+                    var reader = new FileReader();
+                    reader.onloadend = function () {
+                        callback(reader.result);
+                    };
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+                // xhr.setRequestHeader('Content-type', 'application/ecmascript');
+                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                xhr.send();
+            }
+            toDataUrl('http://media.geeksforgeeks.org/wp-content/uploads/20220726175411/GFG.jpg')
+            return
+            // Hard coded image URL change the URL according
+            // to the image you want to download
+            let imgURL =
+                "https://media.geeksforgeeks.org/wp-content/uploads/20220726175411/GFG.jpg";
 
-			// Set the cross origin to "anonymous" or
-			// "use-credentials" according to the
-			// server needs
-			foreignImg.crossOrigin = "anonymous";
-			foreignImg.src = imgURL;
+            let foreignImg = new Image();
 
-			// The imageLoad function is called after proper
-			// loading of the image
-			foreignImg.addEventListener("load", imageLoad);
+            // Set the cross origin to "anonymous" or
+            // "use-credentials" according to the
+            // server needs
+            foreignImg.crossOrigin = "anonymous";
+            foreignImg.src = imgURL;
 
-			function imageLoad() {
+            // The imageLoad function is called after proper
+            // loading of the image
+            foreignImg.addEventListener("load", imageLoad);
 
-				// This function is called display and start
-				// the download of the image
-				const display = document.getElementById("display");
-				let canvas = document.createElement("canvas");
-				let context = canvas.getContext("2d");
-				canvas.width = foreignImg.width;
-				canvas.height = foreignImg.height;
-				context.drawImage(foreignImg, 0, 0);
-				display.appendChild(canvas);
-				var image = canvas.toDataURL();
-				var tempLink = document.createElement("a");
-				tempLink.download = "image.png";
-				tempLink.href = image;
-				document.body.appendChild(tempLink);
-				tempLink.click();
-				document.body.removeChild(tempLink);
-			}
-		}
-	</script>
+            function imageLoad() {
+
+                // This function is called display and start
+                // the download of the image
+                const display = document.getElementById("display");
+                let canvas = document.createElement("canvas");
+                let context = canvas.getContext("2d");
+                canvas.width = foreignImg.width;
+                canvas.height = foreignImg.height;
+                context.drawImage(foreignImg, 0, 0);
+                display.appendChild(canvas);
+                var image = canvas.toDataURL();
+                var tempLink = document.createElement("a");
+                tempLink.download = "image.png";
+                tempLink.href = image;
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            }
+        }
+    </script>
 </body>
 
 </html>
