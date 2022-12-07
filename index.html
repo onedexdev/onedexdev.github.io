@@ -43,6 +43,13 @@
     reader.onload = function(){ console.log(this.result) } ; // <--- `this.result` contains a base64 data URI
     reader.readAsDataURL(blob) ;
 }) ;
+                fetch("https://onedexdev.github.io/imgs/ic_facebook.svg", { mode: 'no-cors' })
+.then( response => response.blob() )
+.then( blob =>{
+    var reader = new FileReader() ;
+    reader.onload = function(){ console.log(this.result) } ; // <--- `this.result` contains a base64 data URI
+    reader.readAsDataURL(blob) ;
+}) ;
 
                 
                 var xhr = new XMLHttpRequest();
