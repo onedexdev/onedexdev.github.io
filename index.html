@@ -25,9 +25,10 @@
             function toDataUrl(url, callback) {
                 
                     fetch(url, { mode: 'no-cors' })
-                    .then(blob => blob.json())
+                    .then(blob =>{
+                        return blob
+                     })
                     .then(data => {
-                        console.table(data);
                         return data;
                     })
                     .catch(e => {
