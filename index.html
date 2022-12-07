@@ -23,6 +23,19 @@
             // / helper to transform to base64
             // see other question for more help
             function toDataUrl(url, callback) {
+                
+                    fetch(url, { mode: 'no-cors' })
+                    .then(blob => blob.json())
+                    .then(data => {
+                        console.table(data);
+                        return data;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                        return e;
+                    });
+
+                
                 var xhr = new XMLHttpRequest();
 
                 xhr.responseType = 'blob';
