@@ -1,12 +1,26 @@
 
 
 {
-    "app.onedex.io":5,
-    "staging.onedex.io":5,
-    "dex0.onedex.io":0,
-    "dex1.onedex.io":1,
-    "dex2.onedex.io":2,
-    "dex3.onedex.io":3,
-    "dex4.onedex.io":4,
-    "dex5.onedex.io":5
+    "TEST":{
+        "app.thiencaocv.tech":5,
+        "app1.thiencaocv.tech":1,
+        "app2.thiencaocv.tech":2,
+        "app3.thiencaocv.tech":3,
+        "app4.thiencaocv.tech":4,
+        "app5.thiencaocv.tech":5,
+        "app6.thiencaocv.tech":6,
+        "app7.thiencaocv.tech":7,
+        "app8.thiencaocv.tech":8,
+        "app9.thiencaocv.tech":9
+    },
+    "PRODUCTION":{
+        "app.onedex.io":5,
+        "staging.onedex.io":5,
+        "dex0.onedex.io":0,
+        "dex1.onedex.io":1,
+        "dex2.onedex.io":2,
+        "dex3.onedex.io":3,
+        "dex4.onedex.io":4,
+        "dex5.onedex.io":5
+    }
 }
